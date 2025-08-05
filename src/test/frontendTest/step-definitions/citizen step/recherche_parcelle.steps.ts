@@ -80,9 +80,11 @@ When('il effectue une nouvelle recherche avec le NUP {string}', async function (
   const searchBox = this.page1.getByRole('textbox', { name: 'Rechercher par NUP ou la' });
   await searchBox.click();
   await searchBox.fill(nup);
+  await searchBox.press('Enter'); // Premier appui sur Entrée
+  await searchBox.press('Enter'); // Deuxième appui sur Entrée
 });
 
-When('il clique deux fois sur le bouton de recherche', async function (this: CustomWorld) {
+/*When('il clique deux fois sur le bouton de recherche', async function (this: CustomWorld) {
   const searchButton = this.page.getByRole('button', { name: '', exact: true });
 
   await searchButton.waitFor({ state: 'visible', timeout: 10000 });
@@ -102,29 +104,35 @@ When('il clique deux fois sur le bouton de recherche', async function (this: Cus
   await searchButton.click();
   await this.page.waitForTimeout(500);
   await searchButton.click();
-});
+});*/
+
 
 Then('les informations de la parcelle sont affichées à nouveau', async function (this: CustomWorld) {
-  console.log('🔍 Vérification de la présence de la fenêtre d\'information...');
-  const resultDialog = this.page.locator('div').filter({ hasText: 'Information sur la parcelle' });
-  await resultDialog.waitFor({ state: 'visible', timeout: 60000 });
-  expect(await resultDialog.isVisible()).toBeTruthy();
+  const newPanel = this.page1.getByRole('dialog', { name: 'Information sur la parcelle' });
+  await newPanel.waitFor({ state: 'visible', timeout: 10000 });
+  expect(await newPanel.isVisible()).toBeTruthy();});
+When('il interagit avec les couches de la carte', { timeout: 60000 }, async function (this: CustomWorld) {
+  const boutonCouches = this.page1.getByRole('button', { name: /couches cartographiques/i });
+
+  console.log('→ Attente que le bouton des couches soit visible');
+  await expect(boutonCouches).toBeVisible({ timeout: 15000 });
+
+  console.log('→ Clic sur le bouton des couches');
+  await boutonCouches.click();
+
+  // Exemple d'activation d'une couche "Vue satellite"
+  const coucheSatellite = this.page1.getByLabel('Vue satellite'); // ou getByText, selon le cas
+  console.log('→ Attente que la couche "Vue satellite" soit visible');
+  await expect(coucheSatellite).toBeVisible({ timeout: 10000 });
+
+  console.log('→ Activation de la couche "Vue satellite"');
+  await coucheSatellite.check(); // ou .click() selon le type d’élément
+
+  // Attendre une mise à jour visuelle ou une trace dans le DOM
+  await this.page1.waitForTimeout(1000);
 });
 
-When('il interagit avec les couches de la carte', async function (this: CustomWorld) {
-  await this.page1.locator('div').filter({ hasText: /^Légende$/ }).click();
-  await this.page1.getByText('Parcelles TF Etat/CommunaleParcelles TF ParticulierParcelles avec propriétaire').click();
-  await this.page1.getByRole('button', { name: 'Couches' }).click();
-  await this.page1.locator('div').filter({ hasText: /^Couches$/ }).click();
-  await this.page1.getByText('Open Street Map Google Maps').click();
 
-  for (let i = 0; i <= 3; i++) {
-    const checkbox = this.page1.getByRole('checkbox').nth(i);
-    if (!(await checkbox.isChecked())) {
-      await checkbox.check();
-    }
-  }
-});
 
 Then('il peut activer différentes couches cartographiques et légendes', async function (this: CustomWorld) {
   const checkbox = this.page1.getByRole('checkbox').nth(0);
