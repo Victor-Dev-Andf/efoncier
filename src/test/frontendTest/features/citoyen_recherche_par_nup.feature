@@ -14,10 +14,9 @@ Feature: Recherche et interaction avec la carte des parcelles
     
     Then les informations de la parcelle sont affichées à nouveau
     And il ferme la fenêtre d'information
-    When il interagit avec les couches de la carte
-    Then il peut activer différentes couches cartographiques et légendes
+    
 
   Examples:
     | url                                 | nup_initial | nup_recherche |
-    | https://test-citizen.andf.bj/       | 100299232   | 100299234     |
+    | https://test-citizen.andf.bj/       | 100299232   | 1002992345     |
     

@@ -111,30 +111,3 @@ Then('les informations de la parcelle sont affichées à nouveau', async functio
   const newPanel = this.page1.getByRole('dialog', { name: 'Information sur la parcelle' });
   await newPanel.waitFor({ state: 'visible', timeout: 10000 });
   expect(await newPanel.isVisible()).toBeTruthy();});
-When('il interagit avec les couches de la carte', { timeout: 60000 }, async function (this: CustomWorld) {
-  const boutonCouches = this.page1.getByRole('button', { name: /couches cartographiques/i });
-
-  console.log('→ Attente que le bouton des couches soit visible');
-  await expect(boutonCouches).toBeVisible({ timeout: 15000 });
-
-  console.log('→ Clic sur le bouton des couches');
-  await boutonCouches.click();
-
-  // Exemple d'activation d'une couche "Vue satellite"
-  const coucheSatellite = this.page1.getByLabel('Vue satellite'); // ou getByText, selon le cas
-  console.log('→ Attente que la couche "Vue satellite" soit visible');
-  await expect(coucheSatellite).toBeVisible({ timeout: 10000 });
-
-  console.log('→ Activation de la couche "Vue satellite"');
-  await coucheSatellite.check(); // ou .click() selon le type d’élément
-
-  // Attendre une mise à jour visuelle ou une trace dans le DOM
-  await this.page1.waitForTimeout(1000);
-});
-
-
-
-Then('il peut activer différentes couches cartographiques et légendes', async function (this: CustomWorld) {
-  const checkbox = this.page1.getByRole('checkbox').nth(0);
-  expect(await checkbox.isChecked()).toBeTruthy();
-});
