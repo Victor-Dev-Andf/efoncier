@@ -1,0 +1,14 @@
+/* Masque tous les logos d'en-tête ou autres */
+img[src*="cucumber"],
+img[src*="node"],
+img[src*="windows"],
+img[src*="os"],
+img[src*="platform"] {
+  display: none !important;
+}
+
+/* Masquer le footer ou branding Cucumber s'il existe */
+footer,
+.cucumber-branding {
+  display: none !important;
+}
