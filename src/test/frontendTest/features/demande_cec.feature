@@ -21,7 +21,7 @@ Feature: Demande de copie de CEC en ligne
     And le reçu contenant "<texte_recu>" s'affiche
      Examples:
     | numeroParcelle | proprietaire       | email                    | telephone    | fichier                          |    nom   | prenom | emailE                 | operateur    | telephone   | bouton_payer | texte_resume                                 | texte_recu            |
-    | 100283100      | HOUESSOU VICTOR    | vhouessouro@gmail.com    |  0197569701  | FP PAPA DOMETO Alphonse.pdf      | Houessou | victor | vhouessouro@gmail.com  | Mtn Bénin    | 0197569701  | Payer 1 CFA  | MARCHAND: Intégration / Compte de test       | Copie de CEC          |
+    | 100299241      | HOUESSOU VICTOR    | vhouessouro@gmail.com    |  0197569701  | FP PAPA DOMETO Alphonse.pdf      | Houessou | victor | vhouessouro@gmail.com  | Mtn Bénin    | 0197569701  | Payer 1 CFA  | MARCHAND: Intégration / Compte de test       | Copie de CEC          |
 
     
    

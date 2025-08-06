@@ -18,5 +18,5 @@ Feature: Recherche et interaction avec la carte des parcelles
 
   Examples:
     | url                                 | nup_initial | nup_recherche |
-    | https://test-citizen.andf.bj/       | 100299232   | 100299234     |
+    | https://test-citizen.andf.bj/       | 100299241   | 100299234     |
     
