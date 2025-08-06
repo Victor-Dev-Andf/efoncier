@@ -13,10 +13,10 @@ Feature: Recherche et interaction avec la carte des parcelles
     When il effectue une nouvelle recherche avec le NUP "<nup_recherche>"
     
     Then les informations de la parcelle sont affichées à nouveau
-    And il ferme la fenêtre d'information
+    And il ferme la fenêtre d'information encore
     
 
   Examples:
     | url                                 | nup_initial | nup_recherche |
-    | https://test-citizen.andf.bj/       | 100299232   | 1002992345     |
+    | https://test-citizen.andf.bj/       | 100299232   | 100299234     |
     

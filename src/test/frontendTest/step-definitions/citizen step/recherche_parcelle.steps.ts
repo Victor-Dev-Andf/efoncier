@@ -43,6 +43,7 @@ Then('les informations de la parcelle sont affichées', async function (this: Cu
 });
 
 Then('il ferme la fenêtre d\'information', async function (this: CustomWorld) {
+    await this.page1.waitForTimeout(1000);
   await this.page1.getByRole('button', { name: 'Close' }).click();
 });
 
@@ -111,3 +112,10 @@ Then('les informations de la parcelle sont affichées à nouveau', async functio
   const newPanel = this.page1.getByRole('dialog', { name: 'Information sur la parcelle' });
   await newPanel.waitFor({ state: 'visible', timeout: 10000 });
   expect(await newPanel.isVisible()).toBeTruthy();});
+ Then('il ferme la fenêtre d\'information encore', async function (this: CustomWorld) {
+  // Attendre 15 secondes
+  await this.page1.waitForTimeout(2000);
+
+  // Fermer la fenêtre
+  await this.page1.getByRole('button', { name: 'Close' }).click();
+});
