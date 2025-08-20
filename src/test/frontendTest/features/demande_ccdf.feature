@@ -1,8 +1,8 @@
 Feature: Demande de Confirmation de Droit Foncier (CCDF)
 
 
-@reuseSession
-Scenario Outline: Soumettre une demande CCDF avec donnée valide 
+@PersonneMajeur
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
   Given je suis connecté avec une session utilisateur existante
   When je clique sur le lien "e-services"
   And je clique sur le service "Confirmation de droitLa"
@@ -10,7 +10,8 @@ Scenario Outline: Soumettre une demande CCDF avec donnée valide
   And je saisis le numéro de parcelle partiel "<numeroParcelle>"
   And je sélectionne le propriétaire "<proprietaire>"
   And je renseigne l'email "<email>"
-  And je renseigne le téléphone "<telephone>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
   When je téléverse les fichiers suivants:
   | FP PAPA DOMETO Alphonse.pdf     |
   
@@ -20,8 +21,253 @@ Scenario Outline: Soumettre une demande CCDF avec donnée valide
 
 
   Examples: 
-    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |
-    | 100299241      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+
+
+
+
+    @Personnemineure
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+
+@Représentantpourunmineur
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+
+
+@Représentantpourunmajeur
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+    @ReprésentantpersonnemoralePrivé
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+
+
+     @ReprésentantpersonnemoralePublic
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+
+         @Représentantgroupeouvert
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+
+ @ReprésentantMembreMineurGroupeconstituéquedemineur
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+ @ReprésentantMembreMajeurGroupeconstituéquedemajeur
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+
+     @ReprésentantMembreMajeurGroupeconstituéquedemajeuretmineur
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
+
+
+ @ReprésentantMembreMineurGroupeconstituéquedemajeuretmineur
+Scenario Outline: Soumettre une demande CCDF avec donnée valide
+  Given je suis connecté avec une session utilisateur existante
+  When je clique sur le lien "e-services"
+  And je clique sur le service "Confirmation de droitLa"
+  And je clique sur le bouton "j'ai compris"
+  And je saisis le numéro de parcelle partiel "<numeroParcelle>"
+  And je sélectionne le propriétaire "<proprietaire>"
+  And je renseigne l'email "<email>"
+  And je choisis le document "<document>"
+  ###And je renseigne le téléphone "<telephone>"
+  When je téléverse les fichiers suivants:
+  | FP PAPA DOMETO Alphonse.pdf     |
+  
+
+  And je clique sur le bouton "Payer 2000 F CFA"
+  Then je dois voir la notification "<notificationTexte>" s'affiche
+
+
+  Examples: 
+    | numeroParcelle | proprietaire      | email                    | telephone  | notificationTexte |document|
+    | 100299802      | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 | Notification      |CIP     |
+
 
 
 ### Scénario : Numéro de parcelle inexistant
@@ -36,8 +282,8 @@ Scenario Outline: Échec avec un numéro de parcelle inexistant
 
 
   Examples:
-    | numeroParcelle | proprietaire | email | telephone | fichier |
-    | 9999999        | -            | -     | -         | -       |
+    | numeroParcelle | proprietaire | email | telephone | fichier |document|
+    | 9999999        | -            | -     | -         | -       |CIP     |
 
 
 ### Scénario : Email invalide
@@ -50,7 +296,8 @@ Scenario Outline: Échec avec un email invalide
   And je saisis le numéro de parcelle partiel "<numeroParcelle>"
   And je sélectionne le propriétaire "<proprietaire>"
   And je renseigne l'email "<email>"
-  And je renseigne le téléphone "<telephone>"
+  And je choisis le document "<document>"
+   ###And je renseigne le téléphone "<telephone>"
   When je téléverse les fichiers suivants:
   | FP PAPA DOMETO Alphonse.pdf     |
   
@@ -60,8 +307,8 @@ Scenario Outline: Échec avec un email invalide
  ###  Then je dois voir un message d'erreur "Email invalide"
 
   Examples:
-    | numeroParcelle | proprietaire       | email           | telephone | fichier                          | notificationTexte |
-    | 100            | HOUESSOU VICTOR    | email_invalide | 0161240530 | FP PAPA DOMETO Alphonse.pdf      | Notification      |
+    | numeroParcelle | proprietaire       | email           | telephone | fichier                          | notificationTexte |document|
+    | 100            | HOUESSOU VICTOR    | email_invalide | 0161240530 | FP PAPA DOMETO Alphonse.pdf      | Notification      |CIP     |
 
 
 ### Scénario : Absence de fichier
@@ -74,13 +321,14 @@ Scenario Outline: Échec sans fichier téléversé
   And je saisis le numéro de parcelle partiel "<numeroParcelle>"
   And je sélectionne le propriétaire "<proprietaire>"
   And je renseigne l'email "<email>"
-  And je renseigne le téléphone "<telephone>"
+  And je choisis le document "<document>"
+  ### And je renseigne le téléphone "<telephone>"
   And je clique sur le bouton "Payer 2000 F CFA"
   Then je dois voir la notification "<notificationTexte>" s'affiche
 
   Examples:
-    | numeroParcelle | proprietaire      | email                   | telephone   | fichier  | notificationTexte |
-    | 100            | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 |         | Notification      |
+    | numeroParcelle | proprietaire      | email                   | telephone   | fichier  | notificationTexte |document|
+    | 100            | HOUESSOU VICTOR    | vhouessouro@gmail.com   | 0161240530 |         | Notification       |CIP      |
 
 
 ### Scénario : Paiement échoué
@@ -113,7 +361,8 @@ Scenario Outline: Saisie d’un téléphone invalide
   And je saisis le numéro de parcelle partiel "<numeroParcelle>"
   And je sélectionne le propriétaire "<proprietaire>"
   And je renseigne l'email "<email>"
-  And je renseigne le téléphone "<telephone>"
+  And je choisis le document "<document>"
+   ### And je renseigne le téléphone "<telephone>"
    When je téléverse les fichiers suivants:
   | FP PAPA DOMETO Alphonse.pdf     |
   
@@ -123,8 +372,8 @@ Scenario Outline: Saisie d’un téléphone invalide
   ### Then je dois voir un message d'erreur "Numéro de téléphone invalide"
 
   Examples:
-    | numeroParcelle | proprietaire      | email                 | telephone | fichier                           | notificationTexte |
-    | 100            | HOUESSOU VICTOR    | vhouessouro@gmail.com | abc123    | FP PAPA DOMETO Alphonse.pdf      | Notification      |
+    | numeroParcelle | proprietaire      | email                 | telephone | fichier                           | notificationTexte |document|
+    | 100            | HOUESSOU VICTOR    | vhouessouro@gmail.com | abc123    | FP PAPA DOMETO Alphonse.pdf      | Notification      |CIP     |
 
 
 ### Scénario : Fichier non supporté
@@ -137,7 +386,8 @@ Scenario Outline: Échec avec fichier au mauvais format
   And je saisis le numéro de parcelle partiel "<numeroParcelle>"
   And je sélectionne le propriétaire "<proprietaire>"
   And je renseigne l'email "<email>"
-  And je renseigne le téléphone "<telephone>"
+   And je choisis le document "<document>"
+   ### And je renseigne le téléphone "<telephone>"
   When je téléverse les fichiers suivants:
   | FP PAPA DOMETO Alphonse.pdf     |
   
@@ -147,5 +397,5 @@ Scenario Outline: Échec avec fichier au mauvais format
   ###Then je dois voir un message d'erreur "Format de fichier non supporté"
 
   Examples:
-    | numeroParcelle | proprietaire      | email                 | telephone  | fichier               |  notificationTexte |
-    | 100            | HOUESSOU VICTOR    | vhouessouro@gmail.com | 0161240530 | script_malicious.exe |  Notification      |
+    | numeroParcelle | proprietaire      | email                 | telephone  | fichier               |  notificationTexte |document|
+    | 100            | HOUESSOU VICTOR    | vhouessouro@gmail.com | 0161240530 | script_malicious.exe |  Notification      |CIP     |

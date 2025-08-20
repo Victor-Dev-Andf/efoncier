@@ -86,11 +86,14 @@ When('je renseigne l\'email {string}', async function (this: CustomWorld, email:
   await input.fill(email);
 });
 
-When('je renseigne le téléphone {string}', async function (this: CustomWorld, tel: string) {
+/*When('je renseigne le téléphone {string}', async function (this: CustomWorld, tel: string) {
   const input = this.page.getByRole('textbox', { name: /tel/i });
   await input.waitFor({ state: 'visible', timeout: 5000 });
   await input.click();
   await input.fill(tel);
+});*/
+When('je choisis le document {string}', async function (option: string) {
+  await this.page.getByRole('combobox').selectOption(option);
 });
 
 When('je téléverse les fichiers suivants:', async function (this: CustomWorld, dataTable) {
